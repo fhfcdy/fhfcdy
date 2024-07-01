@@ -1,0 +1,11 @@
+origin_image = cv2.imread('D:/image/car3.jpg')
+# 复制一张图片，在复制图上进行图像操作，保留原图
+image = origin_image.copy()
+gray_image = gray_guss(image)
+Sobel_x = cv2.Sobel(gray_image, cv2.CV_16S, 1, 0)
+absX = cv2.convertScaleAbs(Sobel_x)
+image = absX
+# 图像阈值化操作——获得二值化图
+ret, image = cv2.threshold(image, 0, 255, cv2.THRESH_OTSU)
+# 显示灰度图像
+plt_show(image)

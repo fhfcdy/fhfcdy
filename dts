@@ -1,0 +1,29 @@
+import com.deepoove.poi.XWPFTemplate;
+import com.deepoove.poi.data.PictureRenderData;
+import com.deepoove.poi.data.Pictures;
+ 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+ 
+public class demo1 {
+    public static String test2(String mess,String pname) throws IOException {
+        
+//模板的本地路径
+        String path = "D:\\ml\\idea\\jishedemo1\\src\\main\\resources\\doc\\demo1.docx";
+//生成后的world的路径
+ String pathend="D:\\ml\\idea\\jishedemo1\\src\\main\\resources\\doc\\"+pname+".docx";
+ 
+//固定写法
+        XWPFTemplate template = XWPFTemplate.compile(path);
+        Map<String,Object> map= new HashMap<>();
+//文字
+        String ws=mess;//mess是你想要去动态替换进的文字
+        map.put("text",ws);//固定写法
+        //固定写法
+        template.render(map);
+        template.writeAndClose(new FileOutputStream(pathend));
+        return pathend;
+    }
+}
